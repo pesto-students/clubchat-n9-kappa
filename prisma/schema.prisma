@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        String      @id @default(uuid())
+  email     String      @unique
+  username  String      @unique
+  hash      String
+  salt      String
+  maxage    Int
+  createdAt Int
+  topics    usertopic[]
+  profiles  profile[]
+  messages message[]
+}
+
+model topic {
+  id          String      @id @default(uuid())
+  name        String      @unique
+  description String?
+  createdAt   DateTime    @default(now())
+  isTrending  Boolean     @default(false)
+  topics      usertopic[]
+  messages message[]
+}
+
+model usertopic {
+  id       String    @id @default(uuid())
+  user     users?    @relation(fields: [userId], references: [id])
+  userId   String
+  topic    topic?    @relation(fields: [topicId], references: [id])
+  topicId  String
+}
+
+model message {
+  id          String     @id @default(uuid())
+  text        String
+  user        users? @relation(fields: [userName], references: [username])
+  userName String
+  topics        topic? @relation(fields: [topicId], references: [id])
+  topicId String
+  createdAt   String
+  dpLink String?
+}
+
+model profile {
+  userProfile          users  @relation(fields: [profileId], references: [id])
+  profileId            String @id @default(uuid())
+  totalChat            Int
+  totalTopicsFollowing Int
+  topicsFollowing      String
+  dpLink               String
+}

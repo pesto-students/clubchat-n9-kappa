@@ -1,0 +1,138 @@
+.profilemain {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    .profileheader {
+        width: 100%;
+        height: 12%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 6%;
+        border-bottom: 1px solid #b2ab8c;
+    }
+    .profilebody {
+        width: 100%;
+        height: 88%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        .profilebodytop {
+            width: 100%;
+            height: 450px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #b2ab8c;
+            .profileinfo {
+                width: 60%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                & > div {
+                    width: 80%;
+                    .username {
+                        font-size: 48px;
+                    }
+                    .email {
+                        font-size: 18px;
+                        color: rgb(245, 245, 147);
+                    }
+                    .totalchat {
+                        font-size: 22px;
+                    }
+                    .totalfollowing {
+                        font-size: 22px;
+                    }
+                }
+            }
+            .profileimage {
+                width: 40%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+            }
+        }
+        .profilebodybottom {
+            width: 100%;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            .profilebodybottomheading {
+                width: 100%;
+                height: 10%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: center;
+                margin-left: 28px;
+            }
+            .topicstack {
+                width: 100%;
+                height: 90%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: flex-start;
+                .chipstyle {
+                    height: 58px;
+                    border-radius: 29px;
+                    color: #1597e5;
+                    border: 1px solid #1597e5;
+                    padding: 12px 28px;
+                    font-size: 28px;
+                    margin: 9px 18px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+
+.closebtn {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+.avatardiv {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    & > div {
+        cursor: pointer;
+        margin-right: 8px;
+        margin-left: 8px;
+        width: 20%;
+        padding: 5%;
+    }
+}
