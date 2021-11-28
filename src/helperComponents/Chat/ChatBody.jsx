@@ -14,6 +14,7 @@ function ChatBody({
   handleNewMessageChange,
   handleSendMessage,
   messagesEndRef,
+  dpLink,
   timestamp,
 }) {
   const _handleKeyDown = (e) => {
@@ -40,10 +41,11 @@ function ChatBody({
             >
               <div>
                 {/* <Image src={"logo"} width={40} height={40} /> */}
-                <img
-                  src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg"
+                <img className={styles.profileImg} src={`/assets/${message.dpLink}.png`}></img>
+                {/* <img
+                  src="/assets/avatar2.png"
                   className={styles.profileImg}
-                ></img>
+                ></img> */}
               </div>
               <div>
                 <div
@@ -124,54 +126,60 @@ function ChatPage() {
   const createRoom = (room) => {
     setRoomId(room);
 
-    console.log("roomid::", room)
+    console.log("roomid::", room);
     if (errorMsg) setErrorMsg("");
   };
 
   const selectedTopics = useSelector((state) => state.topics);
   console.log("selectedTopics", selectedTopics);
 
+  const userProfile = useSelector((state) => state.profile);
+
+//   const avatar = require(`../../../public/assets/${dpLink}.png`);
+
   useEffect(() => {
     if (shouldCallApi) {
-        if (selectedTopics.currentChatTopic) {
-            if (selectedTopics.currentChatTopic.topic) {
-                createRoom(selectedTopics.currentChatTopic.topic.name);
-                console.log(
-                  "selectedTopics::",
-                  selectedTopics.currentChatTopic.topic.name
-                );
-        
-                if (selectedTopics.currentChatTopic.topic) {
-                  try {
-                    fetch(
-                      `/api/messages?topicId=${selectedTopics.currentChatTopic.topic.id}`,
-                      {
-                        method: "GET",
-                        headers: { "Content-Type": "application/json" },
-                      }
-                    )
-                      .then((response) => response.json())
-                      .then((data) => {
-                        if (messages.length === 0) {
-                          for (let i = 0; i < data.messages.length; i++) {
-                            data.messages[i].ownedByCurrentUser =
-                              data.messages[i].userName === user.username;
-                          }
-                          setMessages(data.messages);
-                          console.log("messages::", data.messages);
-                        }
-                      })
-                      .catch((error) => {
-                        console.log(error);
-                      });
-                  } catch (error) {
-                    console.error("An unexpected error occurred:", error);
-                    setErrorMsg(error.message);
-                  }
+      const { isLoaded = false, profileData = {} } = userProfile;
+      console.log("UserProfile::", userProfile);
+      if (selectedTopics.currentChatTopic) {
+        if (selectedTopics.currentChatTopic.topic) {
+          createRoom(selectedTopics.currentChatTopic.topic.name);
+          console.log(
+            "selectedTopics::",
+            selectedTopics.currentChatTopic.topic.name
+          );
+
+          if (selectedTopics.currentChatTopic.topic) {
+            try {
+              fetch(
+                `/api/messages?topicId=${selectedTopics.currentChatTopic.topic.id}`,
+                {
+                  method: "GET",
+                  headers: { "Content-Type": "application/json" },
                 }
-              }
+              )
+                .then((response) => response.json())
+                .then((data) => {
+                  if (messages.length === 0) {
+                    for (let i = 0; i < data.messages.length; i++) {
+                      data.messages[i].ownedByCurrentUser =
+                        data.messages[i].userName === user.username;
+                    }
+                    setMessages(data.messages);
+                    scrollToBottom();
+                    console.log("messages::", data.messages);
+                  }
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            } catch (error) {
+              console.error("An unexpected error occurred:", error);
+              setErrorMsg(error.message);
+            }
+          }
         }
-      
+      }
     }
   });
 
@@ -191,8 +199,16 @@ function ChatPage() {
   };
 
   const handleSendMessage = () => {
+    if (!userProfile.profileData.dpLink) {
+      userProfile.profileData.dpLink = "avatar";
+    }
     timestamp = new Date().toLocaleString();
-    sendMessage(newMessage, user.username, timestamp);
+    sendMessage(
+      newMessage,
+      user.username,
+      timestamp,
+      userProfile.profileData.dpLink
+    );
     setNewMessage("");
     scrollToBottom();
     setCallApi(true);
@@ -203,6 +219,7 @@ function ChatPage() {
       username: user.username,
       topicId: selectedTopics.currentChatTopic.topic.id,
       createdAt: timestamp,
+      dpLink: userProfile.profileData.dpLink,
     };
 
     try {

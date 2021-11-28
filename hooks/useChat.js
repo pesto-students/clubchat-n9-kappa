@@ -30,12 +30,13 @@ const useChat = (roomId) => {
     };
   }, [roomId]);
 
-  const sendMessage = (messageBody, userName, timestamp) => {
+  const sendMessage = (messageBody, userName, timestamp, dpLink) => {
     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
       text: messageBody,
       userId: user.id,
       userName: userName,
-      createdAt: timestamp
+      createdAt: timestamp,
+      dpLink: dpLink
     });
   };
 

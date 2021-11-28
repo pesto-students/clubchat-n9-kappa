@@ -4,7 +4,7 @@ export default async function messages(req, res) {
     if (req.method === 'POST') {
         try {
             console.log ("All messages::" , req.body.text)
-            const message = await createMessage(req.body.text, req.body.userId, req.body.username, req.body.topicId, req.body.createdAt);
+            const message = await createMessage(req.body.text, req.body.userId, req.body.username, req.body.topicId, req.body.createdAt, req.body.dpLink);
             if (message) {
                 res.status(200).send({ message: message })
             }

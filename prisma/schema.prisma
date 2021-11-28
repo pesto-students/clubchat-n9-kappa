@@ -49,6 +49,7 @@ model message {
   topics        topic? @relation(fields: [topicId], references: [id])
   topicId String
   createdAt   String
+  dpLink String?
 }
 
 model profile {
