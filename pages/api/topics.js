@@ -14,7 +14,7 @@ export default async function topics(req, res) {
     }
     else if (req.method === 'POST') {
         try {
-            const topics = await createTopic('', '');
+            const topics = await createTopic(req.body.params.query.topicName);
             if (topics) {
                 res.status(200).send({ topics })
             }

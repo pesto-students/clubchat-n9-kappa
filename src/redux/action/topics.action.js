@@ -92,3 +92,60 @@ export const updateUserTopics = (userId, topicId) => async (dispatch) => {
   }
 };
 
+export const createTopics = (topicName) => async (dispatch) => {
+  try {
+    var response = await axios.post(
+      'api/topics',
+      {
+        params: {
+          query: { topicName }
+        }
+      },
+      // { headers: { Authorization: getState().user.token } }
+    );
+    if (response) {
+      dispatch({
+        type: TYPE.SET_TRENDINGTOPICSLIST,
+        payload: response.data.topics,
+      });
+    }
+  } catch (err) {
+    console.log("Error", err);
+    return;
+  }
+};
+
+export const searchTopic = (searchText) => async (dispatch) => {
+  try {
+    var response = await axios.get(
+      'api/searchtopic',
+      {
+        params: {
+          query: searchText
+        }
+      },
+      // { headers: { Authorization: getState().user.token } }
+    );
+    if (response) {
+      dispatch({
+        type: TYPE.SET_TOPICSEARCHRESULT,
+        payload: response.data.result,
+      });
+    }
+  } catch (err) {
+    console.log("Error", err);
+    return;
+  }
+};
+
+export const clearSearchTopic = () => async (dispatch) => {
+  try {
+      dispatch({
+        type: TYPE.SET_TOPICSEARCHRESULT,
+        payload: [],
+      });
+  } catch (err) {
+    console.log("Error", err);
+    return;
+  }
+};

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import NextModal from 'react-modal';
 import Image from "next/image";
 import styles from "./LeftDrawer.module.scss";
-import { updateUserTopics } from '../../redux/action/topics.action';
+import { createTopics } from '../../redux/action/topics.action';
 
 const customStyles = {
     content: {
@@ -24,34 +24,35 @@ const customStyles = {
 
 export default function UpdateDPModal({ props }) {
     const dispatch = useDispatch();
-    const { modalIsOpen, closeModal, topicItem, userId } = props;
-    const updateUserTopic = () => {
-        if (topicItem) {
-            dispatch(updateUserTopics(userId, topicItem.id));
-            closeModal();
+    const { addTopicModal, setAddTopicModal, searchTopicName="", setSearchText=(text) => {} } = props;
+    const [topicName, setTopicName] = useState(searchTopicName);
+    const createNewTopic = () => {
+        if (topicName.length > 3) {
+            dispatch(createTopics(topicName));
+            setSearchText("");
+            setAddTopicModal(false);
         }
     }
 
     return (
         <div>
             <NextModal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
+                isOpen={addTopicModal}
+                onRequestClose={() => setAddTopicModal(false)}
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                {topicItem !== null &&
-                    <>
-                        <div className={styles.closebtn}>
-                            <button onClick={closeModal}>X</button>
-                        </div>
-                        <div  className={styles.modaltext}>
-                            
-                        </div>
-                        <div className={styles.modalbtn}>
-                            <button onClick={updateUserTopic}>Add</button>
-                        </div>
-                    </>}
+                <>
+                    <div className={styles.closebtn}>
+                        <button onClick={() => setAddTopicModal(false)}>X</button>
+                    </div>
+                    <div className={styles.modaltext}>
+                        <input type="text" className={styles.inputtopic} value={topicName} onChange={(e) => setTopicName(e.target.value)} />
+                    </div>
+                    <div className={styles.modalbtn}>
+                        <button onClick={createNewTopic}>Add</button>
+                    </div>
+                </>
             </NextModal>
         </div>
     )

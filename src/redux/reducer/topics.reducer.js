@@ -6,6 +6,7 @@ const initialState = {
   selectedTopics: [],
   trendingTopics: [],
   userTopics: [],
+  topicSearchResult: [],
 };
 const topics = (
   state = {
@@ -42,6 +43,11 @@ const topics = (
       return {
         ...state,
         currentChatTopic: action.payload,
+      }
+    case TYPE.SET_TOPICSEARCHRESULT:
+      return {
+        ...state,
+        topicSearchResult: action.payload,
       }
     default:
       return { ...state };

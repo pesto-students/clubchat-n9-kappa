@@ -8,7 +8,7 @@ export default function LeftDrawer({ props }) {
     return (
         <div className={styles.profileheader}>
             <div>Welcome {username}</div>
-            <div>Logout</div>
+            <a className={styles.chatheaderlogout} href="/api/logout">Logout</a>
         </div>
     )
 }

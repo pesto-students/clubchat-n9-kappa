@@ -28,7 +28,7 @@
             align-items: center;
             .topicstack {
                 width: 100%;
-                height: 100%;
+                height: 80%;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -55,6 +55,31 @@
                 .inactivechip {
                     color: #ccc;
                     border: 1px solid #ccc;
+                }
+            }
+            .continuebtn {
+                width: 100%;
+                height: 20%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                & > button {
+                    height: 58px;
+                    width: 325px;
+                    padding: 12px 28px;
+                    font-size: 28px;
+                    margin: 9px 18px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #1597e5;
+                    border: none;
+                    color: white;
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }

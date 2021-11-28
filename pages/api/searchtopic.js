@@ -1,9 +1,9 @@
-import { getUserProfile } from '../../lib/user';
+import { searchTopic } from '../../lib/topics';
 
 export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
-            const result = await getUserProfile(req.query.query);
+            const result = await searchTopic(req.query.query);
             res.status(200).send({ result })
         } catch (error){
             console.error(error)
