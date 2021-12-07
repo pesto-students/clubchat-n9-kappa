@@ -1,0 +1,310 @@
+.leftNav {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #19181d;
+    border-right: 1px solid #a2a2a5;
+    .logoDiv {
+        width: 100%;
+        min-height: 10%;
+        height: 10%;
+        display: block;
+        border-bottom: 1px solid #a2a2a5;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        .logocover {
+            position: relative;
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            & > span {
+                width: 60%;
+                height: 100%;
+            }
+            & > div {
+                width: 60%;
+                height: 100%;
+            }
+        }
+    }
+    .profileName {
+        width: 100%;
+        min-height: 8%;
+        height: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #a2a2a5;
+        cursor: pointer;
+        & > span {
+            color: #1597e5;
+            font-size: 32px;
+            line-height: 32px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+    }
+    .addtopic {
+        width: 100%;
+        height: 65px;
+        min-height: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & > button {
+            width: 80%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            padding: 0 3%;
+            align-items: center;
+            border: none;
+            background-color: #3d3b47;
+            border-radius: 12px;
+            cursor: pointer;
+            & > span {
+                width: 100%;
+                height: 20px;
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                color: #a2a2a5;
+                & > span {
+                    margin-left: 8px;
+                    height: 80%;
+                    width: 100%;
+                    text-align: left;
+                    color: #a2a2a5;
+                    font-size: 18px;
+                    line-height: 18px;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+    .yourtopics {
+        width: 100%;
+        min-height: 50px;
+        max-height: 31%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 5px 10%;
+        max-height: 30%;
+        .yourtopicsheading {
+            width: 100%;
+            min-height: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            padding: 0 3%;
+            align-items: center;
+            border: none;
+            background-color: #3d3b47;
+            border-radius: 12px;
+            & > span {
+                width: 100%;
+                height: 24px;
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                & > span {
+                    height: 20px;
+                    margin-left: 8px;
+                    width: 100%;
+                    text-align: left;
+                    color: #a2a2a5;
+                    font-size: 18px;
+                    line-height: 18px;
+                    font-weight: 300;
+                }
+            }
+        }
+        .topicslist {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            border: none;
+            padding: 0 15%;
+            overflow-y: auto;
+            max-height: calc(100% - 42px);
+            scrollbar-width: none;
+            & > span {
+                margin-top: 15px;
+                cursor: pointer;
+                color: #a2a2a5;
+                font-size: 18px;
+                line-height: 18px;
+                font-weight: 300;
+            }
+        }
+        .topicslist::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+    }
+    .trendingtopics {
+        width: 100%;
+        min-height: 31%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 5px 10%;
+        margin-top: 20px;
+        height: 30%;
+        .trendingtopicsheading {
+            width: 100%;
+            min-height: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            padding: 0 3%;
+            align-items: center;
+            border: none;
+            background-color: #3d3b47;
+            border-radius: 12px;
+            & > span {
+                width: 100%;
+                height: 20px;
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                & > span {
+                    margin-left: 8px;
+                    width: 100%;
+                    text-align: left;
+                    color: #a2a2a5;
+                    font-size: 18px;
+                    line-height: 18px;
+                    font-weight: 300;
+                }
+            }
+        }
+        .trendingtopicslist {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            border: none;
+            padding: 0 15%;
+            overflow-y: scroll;
+            height: calc(100% - 42px);
+            scrollbar-width: none;
+            & > span {
+                margin-top: 15px;
+                cursor: pointer;
+                color: #a2a2a5;
+                font-size: 18px;
+                line-height: 18px;
+                font-weight: 300;
+            }
+        }
+        .trendingtopicslist::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+    }
+}
+
+.closebtn {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-color: transparent;
+    & > button {
+        width: 35px;
+        height: 35px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+}
+
+.modaltext {
+    width: 100%;
+    height: 37%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 26px;
+    font-weight: 100;
+    color: #a2a2a5;
+    .inputtopic {
+        width: 90%;
+        height: 60%;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        padding: 0 5px;
+        background-color: #3d3b47;
+        border: 1px solid #4b494e;
+        color: #a2a2a5;
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 200;
+        letter-spacing: 1px;
+        padding: 0 5px;
+    }
+}
+.modalbtn {
+    width: 100%;
+    height: 33%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5%;
+    & > button {
+        width: 126px;
+        height: 30px;
+        background-color: #3d3b47;
+        border: none;
+        color: #a2a2a5;
+        font-size: 18px;
+        font-weight: 200;
+        margin-left: 8px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .leftNavExpand {
+        position: fixed;
+        width: 100%;
+        transition: width 0.7s;
+        z-index: 111;
+    }
+    .leftNavCollapse {
+        width: 0px;
+        overflow: hidden;
+        transition: width 0.7s;
+    }
+    .toggleCrossBtn {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+    }
+}

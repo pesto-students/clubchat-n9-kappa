@@ -9,7 +9,7 @@ export default async function signup(req, res) {
       if (req.body.email.includes('@')) {
         // await findUser(req.body.username)
         if (isTrue) {
-          res.status(401).send({error: 'user already exists'})
+          res.status(401).send('Username or email already exists')
         }
         else{
           createUser(req.body)
@@ -18,7 +18,7 @@ export default async function signup(req, res) {
         
       }
       else {
-        res.status(401).send({error:'invalied email'})
+        res.status(401).send('invalied email')
       }
     }, 500);
     

@@ -1,11 +1,17 @@
 import { useState } from 'react'
-import Router from 'next/router'
-import { useUser } from '../lib/hooks'
-import Layout from '../components/layout'
-import Form from '../components/form'
+import { useRouter } from "next/router";
+import { useUser } from '../lib/hooks';
+import Layout from '../components/layout';
+import Form from '../components/form';
 
 const Signup = () => {
-  useUser({ redirectTo: '/login', redirectIfFound: true })
+  const router = useRouter();
+  const { finished, hasUser = false, user, error } = useUser();
+  if (finished) {
+    if (hasUser && user) {
+      router.push('/chat');
+    }
+  }
 
   const [errorMsg, setErrorMsg] = useState('')
   
@@ -39,7 +45,6 @@ const Signup = () => {
         body: JSON.stringify(body),
       })
       if (res.status === 200) {
-        debugger;
         Router.push('/login')
       } else {
         throw new Error(await res.text())

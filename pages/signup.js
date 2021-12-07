@@ -1,12 +1,19 @@
-import { useState } from 'react'
-import Router from 'next/router'
-import { useUser } from '../lib/hooks'
-import Layout from '../components/layout'
-import Form from '../components/form'
-import Link from 'next/link'
+import { useState } from 'react';
+import Router from 'next/router';
+import { useUser } from '../lib/hooks';
+import Layout from '../components/layout';
+import Form from '../components/form';
+import Link from 'next/link';
+import Image from "next/image";
+import Logo from "../public/logo.svg";
 
 const Signup = () => {
-    useUser({ redirectTo: '/chat', redirectIfFound: true })
+  const { finished, hasUser = false, user, error } = useUser();
+  if (finished) {
+    if (hasUser && user) {
+      Router.push('/chat');
+    }
+  }
 
     const [errorMsg, setErrorMsg] = useState('')
 
@@ -41,8 +48,18 @@ const Signup = () => {
                 body: JSON.stringify(body),
             })
             if (res.status === 200) {
-                debugger;
-                Router.push('/login')
+                  const res1 = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body),
+                  })
+                  if (res1.status === 200) {
+                    Router.push('/chat')
+                  } else {
+                    Router.push('/login')
+                    throw new Error(await res.text())
+                  }
+               
             } else {
                 throw new Error(await res.text())
             }
@@ -54,43 +71,85 @@ const Signup = () => {
 
     return (
         <Layout>
-            <h1 className="login_text">
-                Sign up to continue
-      </h1>
-            <div className="login">
-                <Form isLogin={false} isResetPassword={false} errorMessage={errorMsg} onSubmit={handleSubmit} />
-            </div>
-            <div className="secondary_text">
-                <Link href="/login">
-                    <a>I already have an account</a>
-                </Link>
+            <div className="logincontainer">
+                <div className="login-logocontainer">
+                    <Image src={Logo} alt="logo_icon" layout="intrinsic" />
+                </div>
+                <h1 className="login_text">
+                    Sign up to continue
+                </h1>
+                <div className="login">
+                    <Form isLogin={false} isResetPassword={false} errorMessage={errorMsg} onSubmit={handleSubmit} />
+                </div>
+                <div className="secondary_text">
+                    <span>I already have an account</span>
+                    <Link href="/login">
+                        <a>Click to Login</a>
+                    </Link>
+                </div>
             </div>
             <style jsx>{`
-        .login {
-          max-width: 21rem;
-          margin: 0 auto;
-          padding: 1rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          margin-top: 15px;
+      .logincontainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .login-logocontainer {
+        width: 80%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .login_text {
+        display: flex;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        margin-top: 30px;
+        color: #a2a2a5;
+      }
+      .login {
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+        margin-top: 15px;
+      }
+      .secondary_text {
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 15px;
+        padding: 1rem;
+      }
+      .secondary_text > span {
+        font-size: 1.25vw;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        color: #a2a2a5;
+      }
+      .secondary_text > a {
+        font-size: 1.25vw;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        color: #1597e5;
+        margin-left: 5px;
+      }
+      @media screen and (max-width: 770px) {
+        .secondary_text > span {
+          font-size: 4.25vw;
         }
-        .secondary_text {
-          max-width: 21rem;
-          margin: 0 auto;
-          padding: 1rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          margin-top: 15px;
-          color: #58a6ff;
+        .secondary_text > a {
+          font-size: 4.25vw;
         }
-        .login_text {
-            display: flex;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-            margin-top: 50px;
-          }
+      }
       `}</style>
         </Layout>
     )

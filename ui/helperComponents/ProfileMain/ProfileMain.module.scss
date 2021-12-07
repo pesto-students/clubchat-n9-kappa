@@ -1,0 +1,336 @@
+.profilemain {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    .profileheader {
+        width: 100%;
+        height: 10%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 6%;
+        border-bottom: 1px solid #a2a2a5;
+        .togglekey {
+            display: none;
+        }
+        .welcometext {
+            color: #a2a2a5;
+            font-size: 24px;
+            line-height: 24px;
+            font-weight: 300;
+        }
+    }
+    .profilebody {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        .profilebodytop {
+            width: 100%;
+            height: 450px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #a2a2a5;
+            .profileinfo {
+                width: 60%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                & > div {
+                    width: 80%;
+                    height: 65%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-around;
+                    .username {
+                        font-size: 48px;
+                        color: #a2a2a5;
+                        line-height: 48px;
+                        font-weight: 300;
+                    }
+                    .email {
+                        color: #a2a2a5;
+                        font-size: 18px;
+                        line-height: 18px;
+                        font-weight: 300;
+                    }
+                    .totalchat {
+                        font-size: 22px;
+                        color: #a2a2a5;
+                        line-height: 22px;
+                        font-weight: 300;
+                    }
+                    .totalfollowing {
+                        font-size: 22px;
+                        color: #a2a2a5;
+                        line-height: 22px;
+                        font-weight: 300;
+                    }
+                }
+            }
+            .profileimage {
+                width: 40%;
+                height: 100%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+        .profilebodybottom {
+            width: 100%;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            .profilebodybottomheading {
+                width: 100%;
+                height: 10%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: no-wrap;
+                justify-content: flex-start;
+                align-items: center;
+                margin-left: 28px;
+                margin-top: 12px;
+                color: #a2a2a5;
+                font-size: 38px;
+                line-height: 38px;
+                font-weight: 300;
+            }
+            .topicstack {
+                width: 100%;
+                height: 90%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: flex-start;
+                margin-left: 28px;
+                margin-right: 28px;
+                margin-top: 22px;
+                .chipstyle {
+                    height: 58px;
+                    border-radius: 29px;
+                    color: #1597e5;
+                    border: 1px solid #1597e5;
+                    padding: 12px 28px;
+                    font-size: 28px;
+                    margin: 9px 18px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+
+// .closebtn {
+//     width: 100%;
+//     height: 10%;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     justify-content: flex-end;
+//     align-items: center;
+// }
+
+.closebtn {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-color: transparent;
+    & > button {
+        width: 35px;
+        height: 35px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+}
+
+.avatardiv {
+    width: 50%;
+    height: 50%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 12px;
+    row-gap: 12px;
+    & > div {
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .profilemain {
+        width: 100%;
+        .profileheader {
+            .togglekey {
+                display: block;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+                width: 28px;
+                height: 22px;
+                cursor: pointer;
+                & > span {
+                    width: 100%;
+                    height: 4px;
+                    background-color: #b2ab8c;
+                }
+            }
+            .welcometext {
+            }
+        }
+        .profilebody {
+            .profilebodytop {
+                width: 100%;
+                height: 60%;
+                display: flex;
+                flex-direction: column-reverse;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: center;
+                border-bottom: 1px solid #a2a2a5;
+                .profileinfo {
+                    width: 100%;
+                    height: 40%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-bottom: 12px;
+                    & > div {
+                        width: 80%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: space-around;
+                        .username {
+                            font-size: 32px;
+                            line-height: 32px;
+                        }
+                        .email {
+                            font-size: 14px;
+                            line-height: 14px;
+                        }
+                        .totalchat {
+                            font-size: 18px;
+                            line-height: 18px;
+                        }
+                        .totalfollowing {
+                            font-size: 18px;
+                            line-height: 14px;
+                        }
+                    }
+                }
+                .profileimage {
+                    width: 100%;
+                    height: 60%;
+                }
+            }
+            .profilebodybottom {
+                width: 100%;
+                height: 40%;
+                .profilebodybottomheading {
+                    width: 100%;
+                    height: 10%;
+                    justify-content: center;
+                    font-size: 24px;
+                    line-height: 24px;
+                    font-weight: 300;
+                }
+                .topicstack {
+                    width: 100%;
+                    max-height: 90%;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    margin-left: 8px;
+                    margin-right: 8px;
+                    margin-top: 12px;
+                    .chipstyle {
+                        height: 38px;
+                        border-radius: 19px;
+                        padding: 8px 18px;
+                        font-size: 18px;
+                        margin: 9px 4px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .closebtn {
+        width: 100%;
+        height: 8%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: flex-start;
+        background-color: transparent;
+        & > button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+
+    .avatardiv {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        column-gap: 6px;
+        row-gap: 6px;
+        & > div {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
